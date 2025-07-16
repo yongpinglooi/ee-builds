@@ -125,14 +125,14 @@ jobs:
           name: commands-${{ matrix.ee }}
           path: ${{ matrix.ee }}/commands-${{ matrix.ee }}.txt
 
-      - name: Push To quay.io
+      - name: Push To Docker Hub
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ env.EE }}
           tags: ${{ env.IMAGE_TAG }} ${{ github.sha }}
-          registry: quay.io/${{ secrets.QUAY_USER }}/
-          username: ${{ secrets.REDHAT_USERNAME }}
-          password: ${{ secrets.REDHAT_PASSWORD }}
+          registry: docker.io/${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Print summary
         run: |
